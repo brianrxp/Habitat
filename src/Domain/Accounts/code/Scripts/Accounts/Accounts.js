@@ -14,7 +14,7 @@
         if (data.RedirectUrl != null && data.RedirectUrl != undefined) {
             window.location.href = window.location.href;
         } else {
-            var body = logincontrol.find(".modal-body");
+            var body = logincontrol.find(".form-fields");
             var parent = body.parent();
             body.remove();
             parent.html(data);

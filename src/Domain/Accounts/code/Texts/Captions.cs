@@ -26,5 +26,6 @@
     public static string RememberMe => DictionaryRepository.Get("/Accounts/Captions/RememberMe", "Remember me");
     public static string ForgotYourPassword => DictionaryRepository.Get("/Accounts/Captions/ForgotYourPassword", "Forgot your password?");
     public static string Cancel => DictionaryRepository.Get("/Accounts/Captions/Cancel", "Cancel");
+    public static string EditDetail => DictionaryRepository.Get("/Accounts/Captions/EditDetails", "Edit details");
   }
 }

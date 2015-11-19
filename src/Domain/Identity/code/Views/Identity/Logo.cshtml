@@ -3,7 +3,6 @@
 @using Habitat.Identity.Repositories
 @model Sitecore.Mvc.Presentation.RenderingModel
 
-
 @{
   var identity = IdentityRepository.Get(Model.Item);
   if (identity == null)
@@ -11,8 +10,12 @@
     return;
   }
 }
-<div class="logo">
-  <a class="navbar-brand" href="/">
-    @Html.Sitecore().ImageField(Templates.Identity.Fields.Logo.ToString(), identity, 20)
+<div id="logo" class="logo">
+  <a href="/">
+    @Html.Sitecore().ImageField(Templates.Identity.Fields.Logo.ToString(), identity, 20)    
   </a>
+</div>
+<!-- name-and-slogan -->
+<div class="site-slogan">
+  [HARDCODED TEXT]
 </div>

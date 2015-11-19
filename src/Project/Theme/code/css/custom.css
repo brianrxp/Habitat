@@ -1,0 +1,22 @@
+﻿/* Theme Name: The Project - Responsive Website Template
+Author:HtmlCoder
+Author URI:http://www.htmlcoder.me
+Author e-mail:htmlcoder.me@gmail.com
+Version:1.1.0
+Created:December 2014
+License URI:http://support.wrapbootstrap.com/
+File Description: Place here your custom less styles
+*/
+.header-top .nav-pills:not(.nav-stacked) {
+  margin-bottom: 0;
+}
+.header-top nav {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+@media (max-width: 992px) {
+  .header-top nav {
+    display: none;
+  }
+}
