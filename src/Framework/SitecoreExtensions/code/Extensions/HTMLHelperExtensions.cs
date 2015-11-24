@@ -25,6 +25,11 @@ namespace Habitat.Framework.SitecoreExtensions.Extensions
                                            });
     }
 
+    public static HtmlString ImageField(this SitecoreHelper helper, ID id, Item item, int mh = 0, int mw = 0, string cssClass = null, bool disableWebEditing = false)
+    {
+      return ImageField(helper, id.ToString(), item, mh, mw, cssClass, disableWebEditing);
+    }
+
     public static EditFrameRendering BeginEditFrame<T>(this HtmlHelper<T> helper, string dataSource, string buttons)
     {
       var frame = new EditFrameRendering(helper.ViewContext.Writer, dataSource, buttons);
@@ -43,5 +48,6 @@ namespace Habitat.Framework.SitecoreExtensions.Extensions
       Assert.ArgumentNotNullOrEmpty(fieldID, nameof(fieldID));
       return helper.Field(fieldID.ToString());
     }
+
   }
 }

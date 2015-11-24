@@ -113,8 +113,14 @@
 
     public static string LinkFieldTarget(this Item item, ID fieldID)
     {
-      XmlField field = item.Fields[fieldID];
-      return field?.GetAttribute("target");
+      LinkField field = item.Fields[fieldID];
+      return field?.Target;
+    }
+
+    public static string LinkFieldText(this Item item, ID fieldID)
+    {
+      LinkField field = item.Fields[fieldID];
+      return string.IsNullOrEmpty(field?.Text) ? DictionaryRepository.Get("/Other/DefaultLinkText", "Read more") : field?.Text;
     }
 
     public static bool IsDerived(this Item item, ID templateId)

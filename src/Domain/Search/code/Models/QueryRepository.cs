@@ -8,7 +8,7 @@ namespace Habitat.Search.Models
     {
       return new Query
       {
-        QueryText = queryText
+        QueryText = string.IsNullOrWhiteSpace(queryText) ? "*" : queryText
       };
     }
   }

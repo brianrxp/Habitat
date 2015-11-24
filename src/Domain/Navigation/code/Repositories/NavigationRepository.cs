@@ -122,7 +122,8 @@
         Url = (item.IsDerived(Templates.Link.ID) ? item.LinkFieldUrl(Templates.Link.Fields.Link) : item.Url()),
         Target = (item.IsDerived(Templates.Link.ID) ? item.LinkFieldTarget(Templates.Link.Fields.Link) : ""),
         IsActive = this.IsItemActive(item),
-        Children = this.GetChildNavigationItems(item, level + 1, maxLevel)
+        Children = this.GetChildNavigationItems(item, level + 1, maxLevel),
+        Level = level
       };
     }
 

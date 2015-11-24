@@ -2,21 +2,14 @@
 @using Habitat.Teasers
 @model Sitecore.Mvc.Presentation.RenderingModel
 
-
-<div class="thumbnail teaser">
-  <a href="@Model.Item.LinkFieldUrl(Templates.TeaserContent.Fields.Link)">
-    @Html.Sitecore().ImageField(Templates.TeaserContent.Fields.Image.ToString(), Model.Item, mw: 500, cssClass: "img-responsive")
-  </a>
-  <div class="caption">
-    <h3 class="teaser-heading">
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)
-    </h3>
-    <hr/>
-    <p class="read-more">
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Link.ToString(), Model.Item, new
-      {
-        @class = "btn btn-default"
-      })
-    </p>
+<div class="image-box shadow text-center mb-20">
+  <div class="overlay-container overlay-visible">
+    @Html.Sitecore().ImageField(Templates.TeaserContent.Fields.Image.ToString(), Model.Item, mw: 768, cssClass: "img-responsive")
+    <a target="@Model.Item.LinkFieldTarget(Templates.TeaserContent.Fields.Link)" href="@Model.Item.LinkFieldUrl(Templates.TeaserContent.Fields.Link)" title="@Model.Item.LinkFieldText(Templates.TeaserContent.Fields.Link)" class="overlay-link"><i class="fa fa-link"></i></a>
+    <div class="overlay-bottom hidden-xs">
+      <div class="text">
+        <p class="lead margin-clear">@Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)</p>
+      </div>
+    </div>
   </div>
 </div>

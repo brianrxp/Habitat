@@ -2,20 +2,37 @@
 @using Habitat.Teasers
 @model Sitecore.Mvc.Presentation.RenderingModel
 
-
-<div class="jumbotron" style="background-image: url('@Model.Item.ImageUrl(Templates.TeaserContent.Fields.Image)')">
+<section class="section parallax light-translucent-bg" style="background-image: url('@Model.Item.ImageUrl(Templates.TeaserContent.Fields.Image)')">
   <div class="container">
-    <h1>
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)
-    </h1>
-    <p>
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Summary.ToString(), Model.Item)
-    </p>
-    <p>
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Link.ToString(), Model.Item, new
-      {
-        @class = "btn btn-primary btn-lg"
-      })
-    </p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="call-to-action text-center">
+          @if (Model.Item.Fields[Templates.TeaserContent.Fields.Link].HasValue)
+          {
+            <div class="row">
+              <div class="col-sm-8">
+                <h1 class="title">
+                  @Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)
+                </h1>
+                <p>@Html.Sitecore().Field(Templates.TeaserContent.Fields.Summary.ToString(), Model.Item)</p>
+              </div>
+              <div class="col-sm-4">
+                <br>
+                <p>
+                  <a target="@Model.Item.LinkFieldTarget(Templates.TeaserContent.Fields.Link)" href="@Model.Item.LinkFieldUrl(Templates.TeaserContent.Fields.Link)" class="btn btn-lg btn-default btn-animated">@Model.Item.LinkFieldText(Templates.TeaserContent.Fields.Link)<i class="fa fa-arrow-right pl-20"></i></a>
+                </p>
+              </div>
+            </div>
+          }
+          else
+          {
+            <h1 class="title">
+              @Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)
+            </h1>
+            <p>@Html.Sitecore().Field(Templates.TeaserContent.Fields.Summary.ToString(), Model.Item)</p>
+          }
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>

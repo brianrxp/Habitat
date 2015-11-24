@@ -1,23 +1,34 @@
 ﻿@using Habitat.Framework.SitecoreExtensions.Repositories
 @model Habitat.Framework.Indexing.Models.ISearchResults
+
+@if (Model.TotalNumberOfResults == 0)
+{
+  <div class="alert alert-icon alert-warning" role="alert">
+    <i class="fa fa-warning"></i>
+      @String.Format(DictionaryRepository.Get("/search/results/no results", "No results were found for {0}. Please try again."), Model.Query.QueryText)
+  </div>
+  return;
+}
+
 <div class="search-results">
   @foreach (var result in Model.Results)
   {
     var item = result.Item;
-    <div class="result">
-      <h3>
+    <div class="body mb-20">
+      <p class="small mb-10 pull-right" title="@DictionaryRepository.Get("/search/results/content type", "Content type")">
+        <i class="pl-10 icon-clipboard-1"></i> @result.ContentType
+      </p>
+      <h3 class="title">
         <a href="@result.Url">@Html.Raw(result.Title)</a>
       </h3>
-      <div class="tags">
-        <span class="label label-default">@result.ContentType</span>
-      </div>
       @if (!string.IsNullOrWhiteSpace(result.Description))
       {
-        <div class="description">
+        <p class="mb-10">
           @Html.Raw(result.Description)
-        </div>
+        </p>
       }
-      <a class="btn btn-default" href="@result.Url">@DictionaryRepository.Get("/search/results/read more", "Read more")</a>
+      <a class="btn btn-sm btn-gray-transparent btn-animated margin-clear" href="@result.Url">@DictionaryRepository.Get("/search/results/read more", "Read more")<i class="fa fa-arrow-right pl-10"></i></a>
     </div>
+    <div class="separator"></div>
   }
 </div>

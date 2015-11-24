@@ -1,22 +1,10 @@
-﻿@using Habitat.Teasers
+﻿@using Habitat.Framework.SitecoreExtensions.Extensions
+@using Habitat.Teasers
 @model Sitecore.Mvc.Presentation.RenderingModel
 
-
-<div class="panel panel-default teaser">
-  <div class="panel-heading">
-    <h3 class="teaser-heading">
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="teaser-text">
-      @Html.Sitecore().Field(Templates.TeaserContent.Fields.Summary.ToString(), Model.Item)
-    </div>
-  </div>
-  <div class="panel-footer">
-    @Html.Sitecore().Field(Templates.TeaserContent.Fields.Link.ToString(), Model.Item, new
-    {
-      @class = "btn btn-default"
-    })
-  </div>
+<div class="block clearfix">
+  <h3 class="title">@Html.Sitecore().Field(Templates.TeaserContent.Fields.Title.ToString(), Model.Item)</h3>
+  <div class="separator-2"></div>
+  <p>@Html.Sitecore().Field(Templates.TeaserContent.Fields.Summary.ToString(), Model.Item)</p>
+  <a target="@Model.Item.LinkFieldTarget(Templates.TeaserContent.Fields.Link)" href="@Model.Item.LinkFieldUrl(Templates.TeaserContent.Fields.Link)" class="btn btn-md btn-gray-transparent btn-animated margin-clear">@Model.Item.LinkFieldText(Templates.TeaserContent.Fields.Link)<i class="fa fa-arrow-right pl-20"></i></a>
 </div>

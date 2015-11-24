@@ -1,38 +1,43 @@
 ﻿@using Habitat.Framework.SitecoreExtensions.Extensions
+@using Habitat.Framework.SitecoreExtensions.Repositories
 @using Habitat.News
 @model IEnumerable<Sitecore.Data.Items.Item>
 <div class="newslist">
-  <ol class="media-list">
-
-    @foreach (var item in Model)
-    {
-      <li class="media">
-        <div class="media-left">
-          <a href="#">
-            @Html.Sitecore().ImageField(Templates.NewsArticle.Fields.Image.ToString(), item, mw: 150, cssClass: "img-responsive img-thumbnail")
-          </a>
-        </div>
-        <div class="media-body">
-          <h3 class="media-heading">
-            <a href="@item.Url()">
-              @Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), item)
-            </a>
-          </h3>
-          <div class="description">
-            @Html.Sitecore().Field(Templates.NewsArticle.Fields.Summary.ToString(), item)
+  @foreach (var item in Model)
+  {
+    <article class="blogpost">
+      <div class="row grid-space-10">
+        <div class="col-md-6">
+          <div class="overlay-container">
+            @Html.Sitecore().ImageField(Templates.NewsArticle.Fields.Image.ToString(), item, mw: 768, cssClass: "img-responsive")
+            <a class="overlay-link" href="@item.Url()"><i class="fa fa-newspaper-o"></i></a>
           </div>
-          <div class="metadata panel panel-default">
-            <div class="panel-body">
-              <span class="date text-muted">
-                @Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), item, new
-                           {
-                             format = "MMMM dd, yyyy"
-                           })
+        </div>
+        <div class="col-md-6">
+          <header>
+            <h2>
+              <a href="@item.Url()">
+                @Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), item)
+              </a>
+            </h2>
+            <div class="post-info">
+              <span class="post-date">
+                <i class="icon-calendar"></i>
+                <span class="day">@Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), item, new { format = "dd" })</span>
+                <span class="month">@Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), item, new { format = "MMMM yyyy" })</span>
               </span>
             </div>
+          </header>
+          <div class="blogpost-content">
+            <p>@Html.Sitecore().Field(Templates.NewsArticle.Fields.Summary.ToString(), item)</p>
           </div>
         </div>
-      </li>
-    }
-  </ol>
+      </div>
+      <footer class="clearfix">
+        <div class="link pull-right">
+          <i class="icon-link"></i><a href="@item.Url()">@DictionaryRepository.Get("/news/news list/read more", "Read more")</a>
+        </div>
+      </footer>
+    </article>
+  }
 </div>

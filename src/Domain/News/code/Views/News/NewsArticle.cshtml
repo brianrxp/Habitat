@@ -3,17 +3,34 @@
 @model Sitecore.Mvc.Presentation.RenderingModel
 
 <div class="news">
-  <h2>
-    @Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), Model.Item)
-  </h2>
+  <h1 class="page-title">@Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), Model.Item)</h1>
 
-  <div class="well">
-    <span class="text-muted">
-      @Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), new { format = "MMMM dd, yyyy" })
-    </span>
-  </div>
-  @Html.Sitecore().ImageField(Templates.NewsArticle.Fields.Image.ToString(), Model.Item, mw: 1000, cssClass: "img-responsive image")
-  <div class="body">
-    @Html.Sitecore().Field(Templates.NewsArticle.Fields.Body.ToString(), Model.Item)
-  </div>
+  <article class="blogpost full">
+    <header>
+      <div class="post-info">
+        <span class="post-date">
+          <i class="icon-calendar"></i>
+          <span class="day">@Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), new { format = "dd" })</span>
+          <span class="month">@Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), new { format = "MMMM yyyy" })</span>
+        </span>
+      </div>
+    </header>
+    <div class="blogpost-content">
+      @Html.Sitecore().Field(Templates.NewsArticle.Fields.Body.ToString(), Model.Item)
+    </div>
+    <footer>
+      <div class="row">
+        <div class="col-xs-8 col-sm-10">
+        </div>
+        <div class="col-xs-4 col-sm-2">
+          <div class="overlay-container">
+            @Html.Sitecore().ImageField(Templates.NewsArticle.Fields.Image, Model.Item, mw: 768, cssClass: "img-responsive image")
+            <a href="@Model.Item.ImageUrl(Templates.NewsArticle.Fields.Image)" class="overlay-link popup-img" title="@(Model.Item.GetImage(Templates.NewsArticle.Fields.Image)?.AlternateText)">
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </article>
 </div>

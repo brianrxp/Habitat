@@ -10,7 +10,7 @@
 
     public static string MinimumPasswordLength => DictionaryRepository.Get("/Accounts/Errors/MinimumPasswordLength", "Minimum password length is {1}");
 
-    public static string ConfirmPasswordMismatch => DictionaryRepository.Get("/Accounts/Errors/ConfirmPasswordMismatch", "Wrong confirm password");
+    public static string ConfirmPasswordMismatch => DictionaryRepository.Get("/Accounts/Errors/ConfirmPasswordMismatch", "Confirmed password does not match");
 
     public static string UserAlreadyExists => DictionaryRepository.Get("/Accounts/Errors/UserAlreadyExists", "User with specified login already exists");
 

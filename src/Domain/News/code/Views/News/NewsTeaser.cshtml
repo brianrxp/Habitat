@@ -3,28 +3,22 @@
 @using Habitat.News
 @model Sitecore.Mvc.Presentation.RenderingModel
 
-<div class="thumbnail teaser">
-  <a href="@Model.Item.Url()">
+<div class="image-box style-2 mb-20 shadow bordered light-gray-bg">
+  <div class="overlay-container overlay-visible">
     @Html.Sitecore().ImageField(Templates.NewsArticle.Fields.Image.ToString(), Model.Item, mw: 750)
-  </a>
-  <div class="caption">
-    <h3>
-      <a href="@Html.Sitecore().CurrentRendering.Item.Url()">
-        @Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), Model.Item)
-      </a>
-    </h3>
-    <hr/>
-    @Html.Sitecore().Field(Templates.NewsArticle.Fields.Summary.ToString(), Model.Item)
-    <p class="date text-muted">
-      @Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), new
-      {
-        format = "MMMM dd, yyyy"
-      })
+    <a href="@Model.Item.Url()" class="overlay-link"><i class="fa fa-link"></i></a>
+  </div>
+  <div class="body">
+    <h3>@Html.Sitecore().Field(Templates.NewsArticle.Fields.Title.ToString(), Model.Item)</h3>
+    <div class="separator-2"></div>
+    <p class="small mb-10 text-muted">
+      <i class="icon-calendar"></i>@Html.Sitecore().Field(Templates.NewsArticle.Fields.Date.ToString(), new
+                              {
+                                format = "MMMM yyyy"
+                              })
     </p>
-    <p class="read-more">
-      <a href="@Html.Sitecore().CurrentRendering.Item.Url()" class="btn btn-default">
-        @DictionaryRepository.Get("/news/news teaser/read more", "Read more")
-      </a>
-    </p>
+    <p>@Html.Sitecore().Field(Templates.NewsArticle.Fields.Summary.ToString(), Model.Item)</p>
+    <a href="@Model.Item.Url()" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">@DictionaryRepository.Get("/news/news teaser/read more", "Read more")<i class="fa fa-arrow-right pl-10"></i></a>
   </div>
 </div>
+

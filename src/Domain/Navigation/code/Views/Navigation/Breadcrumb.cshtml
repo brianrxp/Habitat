@@ -2,10 +2,19 @@
 @using Habitat.Navigation
 @model Habitat.Navigation.Models.NavigationItems
 <ol class="breadcrumb">
-  @foreach (var item in Model.Items)
-  {
-    <li class="@(item.IsActive ? "active" : string.Empty)">
-      <a href="@item.Item.Url()">@Html.Sitecore().Field(Templates.Navigable.Fields.NavigationTitle.ToString(), item.Item)</a>
-    </li>
+  @{
+    var i = 0;
+    foreach (var item in Model.Items)
+    {
+      <li class="@(item.IsActive ? "active" : string.Empty)">
+        <a href="@item.Item.Url()">
+          @if (i++ == 0)
+          {
+            <i class="fa fa-home pr-10"></i>
+          }
+          @Html.Sitecore().Field(Templates.Navigable.Fields.NavigationTitle.ToString(), item.Item)
+        </a>
+      </li>
+    }
   }
 </ol>

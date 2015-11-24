@@ -30,6 +30,26 @@ gulp.task("02-Publish-All-Projects", function (callback) {
     "Publish-Project-Projects", callback);
 });
 
+gulp.task("03-Apply-Xml-Transform", function () {
+  return gulp.src("./src/Project/**/*Website.csproj")
+    .pipe(foreach(function (stream, file) {
+      return stream
+        .pipe(debug({ title: "Applying transform project:" }))
+        .pipe(msbuild({
+          targets: ["ApplyTransform"],
+          configuration: config.buildConfiguration,
+          logCommand: true,
+          verbosity: "normal",
+          maxcpucount: 0,
+          toolsVersion: 14.0,
+          properties: {
+            WebConfigToTransform: config.websiteRoot + "\\web.config"
+          }
+        }));
+    }));
+
+});
+
 /*****************************
   Publish
 *****************************/
@@ -58,26 +78,6 @@ var publishProjects = function (location, dest) {
         }));
     }));
 };
-
-gulp.task("Apply-Xml-Transform", function () {
-  return gulp.src("./src/Project/**/*Website.csproj")
-    .pipe(foreach(function (stream, file) {
-      return stream
-        .pipe(debug({ title: "Applying transform project:" }))
-        .pipe(msbuild({
-          targets: ["ApplyTransform"],
-          configuration: config.buildConfiguration,
-          logCommand: true,
-          verbosity: "normal",
-          maxcpucount: 0,
-          toolsVersion: 14.0,
-          properties: {
-            WebConfigToTransform: config.websiteRoot + "\\web.config"
-          }
-        }));
-    }));
-
-});
 
 gulp.task("Publish-Framework-Projects", function () {
   return publishProjects("./src/Framework");

@@ -29,10 +29,10 @@ else
           <dt>E-mail</dt>
           <dd>the@sitecore.net</dd>
         </dl>
-        <a href="/details" class="btn btn-default">@Captions.EditDetail</a>
-        @using (Html.BeginForm("Logout", "Accounts", FormMethod.Post))
+        @using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new {@class= "login-form margin-clear"}))
         {
-          <input type="submit" value="@Captions.Logout" />
+          <a href="/details" class="btn btn-default btn-sm">@Captions.EditDetail</a>
+          <input class="btn btn-primary btn-sm" type="submit" value="@Captions.Logout"/>
         }
       </li>
     </ul>

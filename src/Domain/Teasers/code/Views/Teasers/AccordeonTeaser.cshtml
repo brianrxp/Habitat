@@ -1,7 +1,7 @@
 ﻿@using Sitecore.Support
 @model Habitat.Teasers.Models.AccordeonModel
 
-<div class="panel-group teaser" id="@Model.Id" role="tablist" aria-multiselectable="true">
+<div class="panel-group collapse-style-2 teaser" id="@Model.Id" role="tablist" aria-multiselectable="true">
   @{
     var index = 0;
     foreach (var element in Model.Elements)
@@ -11,7 +11,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="@element.HeaderId">
           <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#@Model.Id" href="#@element.PanelId" aria-expanded="false" aria-controls="@element.PanelId">
+            <a class="@(isExpanded ? "" : "collapsed") " role="button" data-toggle="collapse" data-parent="#@Model.Id" href="#@element.PanelId" aria-expanded="false" aria-controls="@element.PanelId">
               @element.Title
             </a>
           </h4>

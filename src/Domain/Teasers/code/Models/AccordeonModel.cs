@@ -15,7 +15,7 @@
 
     public IEnumerable<AccordeonElement> Elements => new[]
     {
-      new AccordeonElement("Test1"), new AccordeonElement("Test2"), new AccordeonElement("Test3")
+      new AccordeonElement("Section 1"), new AccordeonElement("Section 2"), new AccordeonElement("Section 3")
     };
   }
 

@@ -8,25 +8,30 @@
   return;
 }
 
-<div class="panel panel-default teaser">
-  <div class="panel-heading">
-    <h3 class="teaser-heading">
-      @Html.Sitecore().Field(Templates.HasPageContent.Fields.Title.ToString(), Model.Item)
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="teaser-image">
-      <a href="@Model.Item.Url()">
-        @Html.Sitecore().ImageField(Templates.HasPageContent.Fields.Image.ToString(), Model.Item, mw: 500, cssClass: "img-responsive")
-      </a>
+<div class="image-box shadow text-center mb-20">
+  <div class="overlay-container">
+    <div class="overlay-container overlay-visible">
+      @Html.Sitecore().ImageField(Templates.HasPageContent.Fields.Image.ToString(), Model.Item, mw: 768, cssClass: "img-responsive")
+      <div class="overlay-bottom">
+        <div class="text">
+          <p class="lead margin-clear">@Html.Sitecore().Field(Templates.HasPageContent.Fields.Title.ToString(), Model.Item)</p>
+        </div>
+      </div>
     </div>
-    <div class="teaser-text">
-      @Html.Sitecore().Field(Templates.HasPageContent.Fields.Summary.ToString(), Model.Item)
-    </div>
-  </div>
-  <div class="panel-footer">
-    <a href="@Model.Item.Url()" class="btn btn-default">
-      @DictionaryRepository.Get("/PageContent/Teaser/Read more", "Read more")
-    </a>
+    @if (Model.Item.Fields[Templates.HasPageContent.Fields.Summary].HasValue)
+    {
+      <div class="overlay-top">
+        <div class="text">
+          <p class="small">@Html.Sitecore().Field(Templates.HasPageContent.Fields.Summary.ToString(), Model.Item)</p>
+        </div>
+      </div>
+      <div class="overlay-bottom">
+        <a href="@Model.Item.Url()" class="overlay-link"><i class="fa fa-link"></i></a>
+      </div>
+    }
+    else
+    {
+      <a href="@Model.Item.Url()" class="overlay-link"><i class="fa fa-link"></i></a>
+    }
   </div>
 </div>

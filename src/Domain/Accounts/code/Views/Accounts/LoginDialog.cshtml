@@ -7,27 +7,27 @@
 @using Habitat.Framework.SitecoreExtensions.Repositories
 @model Habitat.Accounts.Models.LoginInfo
 
-<form id="loginModal">
+<form id="loginModal" class="login-form margin-clear">
   @Html.Sitecore().FormHandler()
   @Html.ValidationSummary(true)
-  <div class="form-fields">
-    <div class="form-group @Html.ValidationErrorFor(x => x.Email, "has-error")">
-      @Html.LabelFor(x => x.Email, new { @class = "control-label" })
-      @Html.ValidationMessageFor(x => x.Email, "", new { @class = "help-block" })
-      @Html.ValidationMessage("invalidCredentials", new { @class = "help-block" })
-      @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "loginEmail", @placeholder = "E-mail" })
-    </div>
-    <div class="form-group @Html.ValidationErrorFor(x => x.Password, "has-error")">
-      @Html.LabelFor(x => x.Password, new { @class = "control-label" })
-      @Html.ValidationMessageFor(x => x.Password, "", new { @class = "help-block" })
-      @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "loginPassword", @placeholder = "Password" })
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" id="loginRemember">@Captions.RememberMe
-      </label>
-    </div>
-    <a href="@AccountsSettingsService.Instance.GetPageLink(Sitecore.Context.Item, Templates.AccountsSettings.Fields.ForgotPasswordPage)" class="btn btn-link">@Captions.ForgotYourPassword</a>
+  <div class="form-group has-feedback @Html.ValidationErrorFor(x => x.Email, "has-error")">
+    @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "help-block" })
+    @Html.ValidationMessage("invalidCredentials", new { @class = "help-block" })
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "loginEmail", @placeholder = "E-mail" })
+    <i class="fa fa-user form-control-feedback"></i>
+  </div>
+  <div class="form-group has-feedback @Html.ValidationErrorFor(x => x.Password, "has-error")">
+    @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "help-block" })
+    @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "loginPassword", @placeholder = "Password" })
+    <i class="fa fa-lock form-control-feedback"></i>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="loginRemember">@Captions.RememberMe
+    </label>
   </div>
   <button type="button" class="btn btn-primary btn-sm" onclick="login('loginModal')">@Captions.Login</button>
+  <a href="@AccountsSettingsService.Instance.GetPageLink(Sitecore.Context.Item, Templates.AccountsSettings.Fields.ForgotPasswordPage)" class="btn btn-default btn-sm">@Captions.ForgotYourPassword</a>
 </form>

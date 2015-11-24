@@ -6,5 +6,6 @@ namespace Habitat.Framework.Indexing.Models
   {
     IEnumerable<ISearchResult> Results { get; }
     int TotalNumberOfResults { get; }
+    IQuery Query { get; }
   }
 }

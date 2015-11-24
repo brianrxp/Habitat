@@ -4,7 +4,7 @@
   <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></button>
   <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
     <li>
-      <form role="search" class="search-box margin-clear" action="@Model.SearchResultsUrl">
+      <form role="search" class="search-box margin-clear" action="@Model.SearchResultsUrl" method="GET">
         <div class="form-group has-feedback">
           <input type="text" name="query" placeholder="@Model.SearchBoxTitle" value="" class="form-control" autocomplete="off">
           <i class="icon-search form-control-feedback"></i>

@@ -69,27 +69,34 @@
           </div>
         </div>
       </header>
-
-      <div class="page-layout">
-        @Html.Sitecore().Placeholder("page-layout")
-      </div>
-
-      <footer>
-        @Html.Sitecore().Placeholder("footer")
-      </footer>
-
-      <div id="sidebar-wrapper">
-        <a href="#sidebar" class="sidebar-toggle">
-          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-        </a>
-        <div id="sidebar">
-          <div class="panel-group">
-            @Html.Sitecore().Placeholder("page-sidebar")
-          </div>
-        </div>
+    </div>
+    <div class="breadcrumb-container">
+      <div class="container">
+        @Html.Sitecore().Placeholder("breadcrumb")
       </div>
     </div>
 
-    @RenderAssetsService.Current.RenderScript(ScriptLocation.Body)
+
+    <div class="page-layout">
+      @Html.Sitecore().Placeholder("page-layout")
+    </div>
+
+    <footer id="footer" class="clearfix">
+      @Html.Sitecore().Placeholder("footer")
+    </footer>
+
+    <div id="sidebar-wrapper">
+      <a href="#sidebar" class="sidebar-toggle">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </a>
+      <div id="sidebar">
+        <div class="panel-group">
+          @Html.Sitecore().Placeholder("page-sidebar")
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @RenderAssetsService.Current.RenderScript(ScriptLocation.Body)
 </body>
 </html>
