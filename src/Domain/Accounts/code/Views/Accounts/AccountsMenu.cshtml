@@ -23,17 +23,24 @@ else
     <button type="button" class="btn dropdown-toggle btn-default btn-sm" data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> @Captions.Logout</button>
     <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
       <li>
-        <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd>Thomas Eldblom</dd>
-          <dt>E-mail</dt>
-          <dd>the@sitecore.net</dd>
-        </dl>
-        @using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new {@class= "login-form margin-clear"}))
-        {
-          <a href="/details" class="btn btn-default btn-sm">@Captions.EditDetail</a>
-          <input class="btn btn-primary btn-sm" type="submit" value="@Captions.Logout"/>
-        }
+          <div class="accounts-details">
+              <dl class="dl-horizontal">
+                  @if (!String.IsNullOrEmpty(Sitecore.Context.User.Profile.FullName))
+                  {
+                      <dt>@Captions.Name</dt>
+                      <dd>@Sitecore.Context.User.Profile.FullName</dd>
+                  }
+                  <dt>@Captions.Email</dt>
+                  <dd>@Sitecore.Context.User.Profile.Email</dd>
+              </dl>
+          </div>
+      </li>
+      <li>
+          @using (Html.BeginForm("Logout", "Accounts", FormMethod.Post))
+          {
+            <a href="@AccountsSettingsService.Instance.GetPageLink(Model.Item, Templates.AccountsSettings.Fields.AccountsDetailsPage)" class="btn btn-default btn-sm">@Captions.EditDetails</a>
+            <input class="btn btn-primary btn-sm" type="submit" value="@Captions.Logout" />
+          }
       </li>
     </ul>
   </div>
